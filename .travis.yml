@@ -1,20 +1,20 @@
 sudo: false
 language: python
 python:
-  - "2.7"
-  - "3.4"
   - "3.5"
+  - "3.6"
+  - "3.7"
+  - "3.8"
 
 install:
   - pip install ecdsa ed25519 semver  # test without trezorlib for now
   - pip install -U pylint coverage pep8 pydocstyle  # use latest tools
 
 script:
-  - pep8 trezor_agent
-  - pylint --reports=no --rcfile .pylintrc trezor_agent
-  - pydocstyle trezor_agent
-  - coverage run --source trezor_agent/ -m py.test -v
+  - pep8 onlykey_agent
+  - pylint --reports=no --rcfile .pylintrc onlykey_agent
+  - pydocstyle onlykey_agent
+  - coverage run --source onlykey_agent/ -m py.test -v
 
 after_success:
   - coverage report
-
