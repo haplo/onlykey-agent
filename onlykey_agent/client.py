@@ -46,7 +46,7 @@ class Client(object):
         identity = string_to_identity(label)
         identity['proto'] = 'ssh'
         identity['index'] = index
-        print 'identity', identity
+        print('identity', identity)
         return identity
 
 
@@ -67,7 +67,7 @@ class Client(object):
         log.info('Identity hash =%s', repr(data))
         self.ok.send_message(msg=Message.OKGETPUBKEY, slot_id=132, payload=data)
         time.sleep(.5)
-        for _ in xrange(2):
+        for _ in range(2):
             ok_pubkey = self.ok.read_bytes(64, to_str=True, timeout_ms=10)
             if len(ok_pubkey) == 64:
                 break
@@ -139,11 +139,11 @@ class Client(object):
 
         #TODO ping messages so that we don't need enter key to tell when done.
 
-        print 'Please confirm user', msg['user'], 'login to', label, 'using', self.device_name
+        print('Please confirm user', msg['user'], 'login to', label, 'using', self.device_name)
         print('Enter the 3 digit challenge code shown below on OnlyKey to authenticate')
-        print '{} {} {}'.format(b1, b2, b3)
-        raw_input()
-        for _ in xrange(10):
+        print('{} {} {}'.format(b1, b2, b3))
+        input()
+        for _ in range(10):
             result = self.ok.read_bytes(64, to_str=True, timeout_ms=200)
             if len(result) >= 60:
                 log.info('received= %s', repr(result))
@@ -171,7 +171,7 @@ def string_to_identity(s, identity_type=dict):
     m = _identity_regexp.match(s)
     result = m.groupdict()
     log.debug('parsed identity: %s', result)
-    kwargs = {k: v for k, v in result.items() if v}
+    kwargs = {k: v for k, v in list(result.items()) if v}
     return identity_type(**kwargs)
 
 
