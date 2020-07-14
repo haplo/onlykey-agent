@@ -113,8 +113,7 @@ class Client(object):
         assert len(d) == 32
 
         def get_button(byte):
-            ibyte = ord(byte)
-            return ibyte % 6 + 1
+            return byte % 6 + 1
 
         b1, b2, b3 = get_button(d[0]), get_button(d[15]), get_button(d[31])
 
