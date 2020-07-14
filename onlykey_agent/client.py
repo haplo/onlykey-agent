@@ -70,7 +70,7 @@ class Client(object):
         self.ok.send_message(msg=Message.OKGETPUBKEY, slot_id=132, payload=data)
         time.sleep(.5)
         for _ in range(2):
-            ok_pubkey = self.ok.read_bytes(64, to_str=True, timeout_ms=10)
+            ok_pubkey = self.ok.read_bytes(64, to_bytes=True, timeout_ms=10)
             if len(ok_pubkey) == 64:
                 break
 
@@ -146,7 +146,7 @@ class Client(object):
         print('{} {} {}'.format(b1, b2, b3))
         input()
         for _ in range(10):
-            result = self.ok.read_bytes(64, to_str=True, timeout_ms=200)
+            result = self.ok.read_bytes(64, to_bytes=True, timeout_ms=200)
             if len(result) >= 60:
                 log.info('received= %s', repr(result))
                 while len(result) < 64:
