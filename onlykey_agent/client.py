@@ -134,7 +134,7 @@ class Client(object):
             this_slot_id = 203
             log.info('Key type secp256k1')
 
-        self.ok.send_large_message2(msg=Message.OKSIGNCHALLENGE, payload=test_payload, slot_id=this_slot_id)
+        self.ok.send_large_message2(msg=Message.OKSIGN, payload=test_payload, slot_id=this_slot_id)
 
         #TODO ping messages so that we don't need enter key to tell when done.
 
