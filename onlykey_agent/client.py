@@ -124,10 +124,10 @@ class Client(object):
         # 202 = P256
         # 203 = secp256k1
         keytype = msg['key_type']
-        if msg['key_type'].startswith('ssh-ed25519'):
+        if keytype.startswith(b'ssh-ed25519'):
             this_slot_id = 201
             log.info('Key type ed25519')
-        elif msg['key_type'].startswith('ecdsa-sha2-nistp256'):
+        elif keytype.startswith(b'ecdsa-sha2-nistp256'):
             this_slot_id = 202
             log.info('Key type P256')
         else:
