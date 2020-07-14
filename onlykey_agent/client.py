@@ -62,9 +62,7 @@ class Client(object):
         if self.curve == formats.CURVE_NIST256:
             data = '02' + data
         else:
-            data = '01'+ data
-
-        data = data.decode("hex")
+            data = '01' + data
 
         log.info('Identity hash =%s', repr(data))
         self.ok.send_message(msg=Message.OKGETPUBKEY, slot_id=132, payload=data)
