@@ -100,9 +100,9 @@ class Client(object):
                  msg['user'], label, self.device_name)
 
         h1 = hashlib.sha256()
-        h1.update(label)
+        h1.update(label.encode('ascii'))
         data = h1.hexdigest()
-        data = data.decode("hex")
+        data = binascii.a2b_hex(data)
 
         test_payload = blob + data
         # Compute the challenge pin
