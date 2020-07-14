@@ -7,6 +7,8 @@ for more details.
 The server's source code can be found here:
 https://github.com/openssh/openssh-portable/blob/master/authfd.c
 """
+from __future__ import absolute_import
+
 import binascii
 import io
 import logging

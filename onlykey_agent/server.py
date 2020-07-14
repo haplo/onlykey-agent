@@ -1,4 +1,6 @@
 """UNIX-domain socket server for ssh-agent implementation."""
+from __future__ import absolute_import
+
 import contextlib
 import logging
 import os

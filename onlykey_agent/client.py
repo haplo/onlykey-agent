@@ -3,6 +3,9 @@ Connection to hardware authentication device.
 
 It is used for getting SSH public keys and ECDSA signing of server requests.
 """
+from __future__ import absolute_import
+from __future__ import print_function
+
 import binascii
 import io
 import logging
@@ -49,13 +52,12 @@ class Client(object):
         print('identity', identity)
         return identity
 
-
     def get_public_key(self, label):
         log.info('getting public key from %s...', self.device_name)
         log.info('Trying to read the public key...')
         # Compute the challenge pin
         h = hashlib.sha256()
-        h.update(label)
+        h.update(label.encode('ascii'))
         data = h.hexdigest()
         if self.curve == formats.CURVE_NIST256:
             data = '02' + data
